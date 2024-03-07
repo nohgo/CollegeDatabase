@@ -1,9 +1,9 @@
 import java.util.*;
 
 public class StudentLoop {
-    public static void studentLoop(Master master) {
-        Scanner studentScanner = new Scanner(System.in);
-        Student student = new Student("John");
+    public static void studentLoop(Master master, Scanner studentScanner) {
+        System.out.print("\nEnter your name: ");
+        Student student = new Student(studentScanner.nextLine());
         while(true) {
             System.out.println("1. Add Course");
             System.out.println("2. Remove Course");
@@ -15,34 +15,35 @@ public class StudentLoop {
             switch(choice) {
                 case 1:
                     for (int i = 0; i < master.getTeachers().size(); i++) {
-                        System.out.println(i + ". " + master.getTeachers().get(i));
+                        System.out.println((i+1)+ ". " + master.getTeachers().get(i));
                     }
                     System.out.print("Enter teacher index: ");
-                    int teacherIndex = studentScanner.nextInt();
+                    int teacherIndex = studentScanner.nextInt() - 1;
                     studentScanner.nextLine();
                     for (int i = 0; i < master.getTeachers().get(teacherIndex).getCourses().size(); i++) {
                         System.out.println(i + ". " + master.getTeachers().get(teacherIndex).getCourses().get(i));
                     }
+                    System.out.print("Enter course index: ");
                     master.addStudent(master.getTeachers().get(teacherIndex), student, master.getTeachers().get(teacherIndex).getCourses().get(studentScanner.nextInt()));
                     break;
                 case 2:
-                    System.out.print("Enter course name: ");
-                    Course course = new Course (studentScanner.nextLine());
-                    for (Course c : student.getCourses()) {
-                        if (c.equals(course)) {
-                            student.removeCourse(c);
-                            break;
-                        }
+                    for (int i = 0; i < student.getCourses().size(); i++) {
+                        System.out.println((i+1) + ". " + student.getCourses().get(i));
                     }
+                    System.out.print("Enter course index: ");
+                    int studentIndex = studentScanner.nextInt();
+                    student.getCourses().get(studentIndex - 1).removeStudent(student);
+                    student.removeCourse(studentIndex - 1);
                     break;
                 case 3:
-                    for (Course c : student.getCourses()) {
-                        System.out.println(c);
-                    }
+                    System.out.println(student + "\n");
                     break;
                 case 4:
-                studentScanner.close();
-                    return;
+                    if (student.getCourses().size() == 0)
+                        System.out.println("You need to enroll in at least one course before exiting.\n");
+                    else
+                        return;
+                    break;
             }
         }
     }

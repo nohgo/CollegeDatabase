@@ -27,8 +27,8 @@ public class Student implements java.io.Serializable{
         else
             throw new IllegalArgumentException("Course limit reached");
     }
-    public void removeCourse(Course course) {
-        courses.remove(course);
+    public void removeCourse(int index) {
+        courses.remove(index);
     }
     @Override
     public String toString() {

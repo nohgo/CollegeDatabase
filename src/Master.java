@@ -15,5 +15,8 @@ public class Master implements java.io.Serializable{
     public ArrayList<Teacher> getTeachers() {
         return teachers;
     }
+    public void addTeacher(Teacher teacher) {
+        teachers.add(teacher);
+    }
 
 }
