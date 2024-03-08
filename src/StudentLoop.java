@@ -5,7 +5,7 @@ public class StudentLoop {
         System.out.print("\nEnter your name: ");
         Student student = new Student(studentScanner.nextLine());
         while(true) {
-            System.out.println("1. Add Course");
+            System.out.println("\n1. Add Course");
             System.out.println("2. Remove Course");
             System.out.println("3. Print Courses");
             System.out.println("4. Exit");
