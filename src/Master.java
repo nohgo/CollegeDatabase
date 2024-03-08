@@ -5,7 +5,7 @@ public class Master implements java.io.Serializable{
     public Master() {
         teachers = new ArrayList<Teacher>();
     }
-    public void addStudent(Teacher teacher, Student student, Course course) throws IllegalArgumentException{
+    public void addStudent(Teacher teacher, Student student, Course course) throws Exception{
         teacher.addStudent(course, student);
         student.addCourse(course);
     }

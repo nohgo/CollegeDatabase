@@ -21,7 +21,8 @@ public class Student implements java.io.Serializable{
     public void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
     }
-    public void addCourse(Course course) {
+    public void addCourse(Course course) throws Exception{
+        if (courses.contains(course)) throw new Exception("Course already in account");
         if (courses.size() < maxCap)
             courses.add(course);
         else

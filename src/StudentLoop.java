@@ -17,15 +17,16 @@ public class StudentLoop {
                     for (int i = 0; i < master.getTeachers().size(); i++) {
                         System.out.println((i+1)+ ". " + master.getTeachers().get(i));
                     }
-                    System.out.print("Enter teacher index: \n");
+                    System.out.print("Enter teacher index: ");
                     int teacherIndex = studentScanner.nextInt() - 1;
                     studentScanner.nextLine();
+                    System.out.println();
                     for (int i = 0; i < master.getTeachers().get(teacherIndex).getCourses().size(); i++) {
-                        System.out.println(i + ". " + master.getTeachers().get(teacherIndex).getCourses().get(i));
+                        System.out.println(i+1 + ". " + master.getTeachers().get(teacherIndex).getCourses().get(i));
                     }
                     System.out.print("Enter course index: ");
                     try {
-                        master.addStudent(master.getTeachers().get(teacherIndex), student, master.getTeachers().get(teacherIndex).getCourses().get(studentScanner.nextInt()));
+                        master.addStudent(master.getTeachers().get(teacherIndex), student, master.getTeachers().get(teacherIndex).getCourses().get(studentScanner.nextInt() - 1));
                     } catch (Exception e) {
                         System.out.println(e.getMessage() + "\n");
                     }
