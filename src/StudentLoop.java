@@ -17,14 +17,18 @@ public class StudentLoop {
                     for (int i = 0; i < master.getTeachers().size(); i++) {
                         System.out.println((i+1)+ ". " + master.getTeachers().get(i));
                     }
-                    System.out.print("Enter teacher index: ");
+                    System.out.print("Enter teacher index: \n");
                     int teacherIndex = studentScanner.nextInt() - 1;
                     studentScanner.nextLine();
                     for (int i = 0; i < master.getTeachers().get(teacherIndex).getCourses().size(); i++) {
                         System.out.println(i + ". " + master.getTeachers().get(teacherIndex).getCourses().get(i));
                     }
                     System.out.print("Enter course index: ");
-                    master.addStudent(master.getTeachers().get(teacherIndex), student, master.getTeachers().get(teacherIndex).getCourses().get(studentScanner.nextInt()));
+                    try {
+                        master.addStudent(master.getTeachers().get(teacherIndex), student, master.getTeachers().get(teacherIndex).getCourses().get(studentScanner.nextInt()));
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage() + "\n");
+                    }
                     break;
                 case 2:
                     for (int i = 0; i < student.getCourses().size(); i++) {
@@ -32,11 +36,14 @@ public class StudentLoop {
                     }
                     System.out.print("Enter course index: ");
                     int studentIndex = studentScanner.nextInt();
-                    student.getCourses().get(studentIndex - 1).removeStudent(student);
-                    student.removeCourse(studentIndex - 1);
+                    try {
+                        student.getCourses().get(studentIndex - 1).removeStudent(student);
+                        student.removeCourse(studentIndex - 1);
+                    } catch (Exception e) { System.out.println("Invalid index\n"); };
+
                     break;
                 case 3:
-                    System.out.println(student + "\n");
+                    System.out.println("\n" + student + "\n");
                     break;
                 case 4:
                     if (student.getCourses().size() == 0)

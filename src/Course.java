@@ -3,12 +3,16 @@ import java.util.*;
 public class Course implements java.io.Serializable{
     private int maxCap;
     private String name;
+    private String prefix;
+    private int number;
     private ArrayList<Student> students = new ArrayList<Student>();
 
-    public Course(String name) {
+    public Course(String name, String prefix, int number) {
         setName(name);
         setStudents(new ArrayList<Student>());
         maxCap = 30;
+        setPrefix(prefix);
+        setNumber(number);
     }
     public String getName() {
         return name;
@@ -40,6 +44,18 @@ public class Course implements java.io.Serializable{
     }
     @Override
     public String toString() {
-        return name;
+        return prefix + number + " - " + name;
+    }
+    public String getPrefix() {
+        return prefix;
+    }
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+    public int getNumber() {
+        return number;
+    }
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

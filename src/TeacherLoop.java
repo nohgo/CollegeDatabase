@@ -16,10 +16,21 @@ public class TeacherLoop {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter course name: ");
-                    String courseName = teacherScanner.nextLine();
-                    master.getTeachers().get(master.getTeachers().size() - 1).addCourse(new Course(courseName));
-                    System.out.println("Course added\n");
+                    try {
+                        System.out.print("Enter course name: ");
+                        String courseName = teacherScanner.nextLine();
+                        System.out.print("Enter course prefix: ");
+                        String coursePrefix = teacherScanner.nextLine();
+                        System.out.print("Enter course number: ");
+                        int courseNumber = teacherScanner.nextInt();
+                        teacherScanner.nextLine();
+
+                        master.getTeachers().get(master.getTeachers().size() - 1).addCourse(new Course(courseName, coursePrefix, courseNumber));
+                        System.out.println("Course added\n");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage() + "\n");
+                    }
+
                     break;
                 case 2:
                     System.out.println(master.getTeachers().get(master.getTeachers().size() - 1) + "\n");

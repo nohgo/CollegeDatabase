@@ -3,10 +3,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Master master = new Master();
-        
-        System.out.println("Welcome to the school system\n");
+
+        try {master = Loader.loadFile();}
+		catch(Exception e) {}
+
+        System.out.println("\nWelcome to the school system");
         while(true) {
-            System.out.println("Are you a teacher(0) or a student(1)? (-1 to full exit) ");
+            System.out.print("\nAre you a teacher(0) or a student(1)? (-1 to full exit): ");
             switch(input.nextInt()) {
                 case 0:
                     input.nextLine();
@@ -14,9 +17,14 @@ public class Main {
                     break;
                 case 1:
                     input.nextLine();
-                    StudentLoop.studentLoop(master, input);
+                    if (!master.isEmpty()) {
+                        StudentLoop.studentLoop(master, input);
+                    } else {
+                        System.out.println("No courses available\n");
+                    }
                     break;
                 case -1:
+                    Saver.saveClass(master);
                     System.exit(0);
             }
         }

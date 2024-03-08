@@ -18,5 +18,7 @@ public class Master implements java.io.Serializable{
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
     }
-
+    public boolean isEmpty() {
+        return teachers.isEmpty();
+    }
 }

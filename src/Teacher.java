@@ -26,6 +26,8 @@ public class Teacher implements java.io.Serializable{
         course.addStudent(student);
     }
     public void addCourse(Course course) {
+        if (courses.contains(course))
+            throw new IllegalArgumentException("Course already exists");
         if (courses.size() < maxCap)
             courses.add(course);
         else
